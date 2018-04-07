@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "include/accumulator.h"
 #include "include/translator.h"
-#include "include/tracordic.h"
+#include "include/cordic.h"
 
 int main() {
 
@@ -41,6 +41,16 @@ int main() {
   doRead(y, addr);
   printf("[INFO]   Received 0x%lx (expected 0x%lx)\n", y, data[2]);
   assert(y == data[2]);
+
+  int x;
+  for(x=0;x<=90;x++){
+    uint64_t deg=x<<8,sin,cos,degh=x<<24,sinh,cosh;
+    SIN(sin,deg);
+    COS(cos,deg);
+    SINH(sinh,degh);
+    COSH(cosh,degh);
+    printf("[INFO] Cordic Deg=%lu SIN=%lu COS=%lu SINH=%lu COSH=%lu\n",deg>>8,sin,cos,sinh,cosh);
+  }
 
   return 0;
 }

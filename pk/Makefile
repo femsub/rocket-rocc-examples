@@ -1,7 +1,7 @@
 include $(abs_top_srcdir)/Makefrag
 
 tests = \
-	accumulator
+	cordic
 
 CFLAGS := $(CFLAGS) \
 	-Wall \
